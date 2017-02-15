@@ -7,7 +7,7 @@ var mongoStore = require('connect-mongo')({session : expressSession});
 var mongoose = require('mongoose');
 require('./models/users_model.js');
 
-var conn = mongoose.connect('mongodb://localhost/myapp');
+var conn = mongoose.connect('mongodb://localhost:27017/myapp');
 var app = express();
 
 app.engine('.html',require('ejs').__express);
@@ -19,9 +19,9 @@ app.use(expressSession({
 	secret : 'SEECRET',
 	cookie : {maxAge : 60*60*1000},
 	store : new mongoStore({
-		db : mongoose.connect.db,
-		collection : 'sessions'
+		url: "mongodb://localhost:27017/myapp" 
 	})
+
 }));
 require('./routes')(app);
 app.listen(80);

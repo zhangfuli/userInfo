@@ -1,7 +1,7 @@
-var crypto = require('cypto');
+var crypto = require('crypto');
 var express = require('express');
 module.exports = function (app) {
-	var users = require('.controllers/users_controllers');
+	var users = require('./controllers/users_controller');
 	app.use('/static' , express.static('./static'))
 			.use('/lib',express.static('../lib'));
 	app.get('/',function (req,res){
@@ -42,5 +42,5 @@ module.exports = function (app) {
 	app.post('/user/update' , users.updateUser);
 	app.post('/user/delete' , users.deleteUser);
 	app.post('/login' , users.login);
-	app.get('/user.profile' ,users.getUserProfile);
+	app.get('/user/profile' ,users.getUserProfile);
 };
