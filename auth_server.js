@@ -15,13 +15,14 @@ app.set('views', __dirname + '/views');
 app.set('view engine','html');
 app.use(bodyParser());
 app.use(cookieParser());
+
+//向数据库中储存
 app.use(expressSession({
 	secret : 'SEECRET',
 	cookie : {maxAge : 60*60*1000},
 	store : new mongoStore({
 		url: "mongodb://localhost:27017/myapp" 
 	})
-
 }));
 require('./routes')(app);
 app.listen(80);
